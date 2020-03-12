@@ -1,0 +1,31 @@
+ {% extends 'blog/base.html' %}   
+ {% load static %}
+ <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    {% block content %} 
+    <!-- <center>
+    <a href="{% url 'post_new' %}" class="btn btn-info">Post Blog</a><br><br></h4>
+    </center> -->
+        <br>
+        <form method='GET' action='' class="form-inline">
+            <input class="form-control mr-sm-2" type="search" name='q'  placeholder="Search" value='{{ request.GET.q }}' aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        {% for post in posts %}
+            <div>  
+                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                <a href="/delete?id={{post.id}}" onclick="return deleteItem()" class="btn btn-warning btn-xs">DELETE</a>
+                </h2>
+                <!-- <p>{{ post.text|linebreaksbr }}</p> -->
+                <p>published: {{ post.published_date }}</p>
+            </div>
+        {% endfor %}
+        <script>
+    function deleteItem(){
+
+        if(confirm('Are You Sure To Delete item?'))
+        return true;
+        else return false;
+    }
+</script>
+
+    {% endblock %}

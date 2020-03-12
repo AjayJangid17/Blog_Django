@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+    <head>
+        <title>Travel Blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        {% comment %} <link rel="stylesheet" href="{% static 'css/custom.css' %}"> {% endcomment %}
+        
+    </head>
+    <body>
+    <nav class="navbar navbar-dark bg-dark">
+       <div class="page-header">
+        <h2 style="text-align: center;"><a href="{% url 'post_list' %}">Must Visit Places!</a></h2>
+        
+        <center>
+        <a class="btn btn-info" href="{% url 'home' %}">Logout</a>
+        </center>
+  
+</nav>
+      </div>
+     
+      <div class="content container">
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Post Blog</a>
+          {% endif %}
+      </div>
+          <div class="row">
+              <div class="col-md-8">
+              {% block content %}
+              {% endblock %}
+              </div>
+          </div>
+      </div>
+  </body>
+</html>
+      
+      
+    
